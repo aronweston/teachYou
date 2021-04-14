@@ -1,17 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import HomePage from './pages/home';
 import Header from './components/Header';
-import Footer from './components/Footer';
+import Home from './components/Home';
 import GlobalStyle from './components/globalStyles';
-import styled from 'styled-components';
 
 ReactDOM.render(
   <React.StrictMode>
     <GlobalStyle />
     <Header />
-    <HomePage />
-    <Footer />
+    <Home />
   </React.StrictMode>,
   document.getElementById('root')
 );
