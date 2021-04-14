@@ -1,20 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { LoginWrapper, LoginContainer, ContactForm } from './styles';
 import { Button } from '../Global';
+import ShopContext from '../../context/ShopContext';
 
 const Login = ({ close, visible }) => {
+  const { loginUser } = useContext(ShopContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    //set loading once submitted
     setLoading(true);
+
     setTimeout(() => {
       setLoading(false);
     }, 4000);
-    console.log('submit');
+
+    setSuccess(true);
+    loginUser(email, password);
   };
 
   return (
@@ -47,7 +54,7 @@ const Login = ({ close, visible }) => {
             <Button secondary>Send</Button>
           </ContactForm>
         ) : (
-          <div>Loading...</div>
+          <>{success ? <div>success</div> : <div>Loading...</div>}</>
         )}
       </LoginContainer>
       <button onClick={close}>Exit</button>

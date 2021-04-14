@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, createContext } from 'react';
 
 const defaultState = {
   products: [
@@ -45,9 +45,33 @@ const defaultState = {
   ],
 };
 
-const ShopContext = React.createContext(defaultState);
+const ShopContext = createContext(defaultState);
 export default ShopContext;
 
 export function ShopContextProvider({ children }) {
-  return <ShopContext.Provider value={{}}>{children}</ShopContext.Provider>;
+  const [user, setUser] = useState(
+    JSON.parse(
+      typeof window !== 'undefined' ? localStorage.getItem('user') : null
+    )
+  );
+
+  const loginUser = (email, password) => {
+    const obj = {
+      email,
+      password,
+    };
+
+    localStorage.setItem('user', JSON.stringify(obj));
+  };
+
+  return (
+    <ShopContext.Provider
+      value={{
+        products: defaultState.products,
+        loginUser,
+        user,
+      }}>
+      {children}
+    </ShopContext.Provider>
+  );
 }
