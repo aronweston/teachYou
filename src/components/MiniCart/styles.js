@@ -7,7 +7,7 @@ export const MiniCartContainer = styled.div`
   z-index: 9000;
   height: 100vh;
   width: 350px;
-  background-color: var(--bkg);
+  background-color: var(--background);
   box-shadow: 0 0px 5px rgba(0, 0, 0, 0.06);
   ${(props) => (props.visible === true ? visible : notVisible)};
   @media screen and (max-width: 768px) {

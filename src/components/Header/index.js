@@ -1,16 +1,23 @@
 import React, { useContext, useState } from 'react';
-import { HeaderWrapper, Logo, CartIcon } from './styles';
+import { HeaderWrapper, Logo, CartIcon, UserIcon } from './styles';
 import ShopContext from '../../context/ShopContext';
 import MiniCart from '../MiniCart';
+import Login from '../Login';
 
 const Header = () => {
   const { products } = useContext(ShopContext);
-  console.log(products);
 
   const [cartVisible, setCartVisible] = useState(false);
+  const [userVisible, setUserVisible] = useState(false);
+
   const showCart = () => {
     !cartVisible ? setCartVisible(true) : setCartVisible(false);
   };
+
+  const showUser = () => {
+    !userVisible ? setUserVisible(true) : setUserVisible(false);
+  };
+
   return (
     <>
       <HeaderWrapper>
@@ -20,18 +27,15 @@ const Header = () => {
         </span>
         <div>
           <button>
-            <CartIcon onClick={showCart} />
+            <UserIcon onClick={showUser} />
           </button>
           <button>
             <CartIcon onClick={showCart} />
           </button>
         </div>
       </HeaderWrapper>
-
-      <MiniCart
-        visible={cartVisible}
-        crossClick={() => setCartVisible(false)}
-      />
+      <MiniCart visible={cartVisible} close={() => setCartVisible(false)} />
+      <Login visible={userVisible} close={() => setUserVisible(false)} />
     </>
   );
 };

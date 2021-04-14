@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { ReactComponent as HeaderLogo } from '../../assets/svg/logo.svg';
 import { ReactComponent as CartIconSVG } from '../../assets/svg/cart.svg';
-import { ReactComponent as UserIconSVG } from '../../assets/svg/cart.svg';
+import { ReactComponent as UserIconSVG } from '../../assets/svg/user.svg';
 
 const svgStyles = `
 width: 30px;

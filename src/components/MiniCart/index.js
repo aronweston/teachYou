@@ -9,7 +9,7 @@ import {
 } from './styles';
 // import CartContext from 'context/CartContext';
 
-const MiniCart = ({ visible, crossClick }) => {
+const MiniCart = ({ visible, close }) => {
   // const { checkout } = useContext(CartContext);
 
   // visible = true;
@@ -31,7 +31,7 @@ const MiniCart = ({ visible, crossClick }) => {
       <CartHeader>
         <div />
         <CloseBar>
-          <button onClick={crossClick}>×</button>
+          <button onClick={close}>×</button>
         </CloseBar>
       </CartHeader>
       <CartContainer>
