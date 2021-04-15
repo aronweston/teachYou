@@ -17,7 +17,7 @@ export const CartIcon = styled(CartIconSVG)`
   ${svgStyles}
 `;
 export const UserIcon = styled(UserIconSVG)`
-  stroke: ${(props) => (props.loggedIn === true ? 'var(--text)' : '')};
+  stroke: ${(props) => (props.loggedIn ? 'var(--text)' : '')};
   ${svgStyles}
 `;
 

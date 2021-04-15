@@ -9,7 +9,7 @@ export const HeroContainer = styled.section`
   align-items: center;
   text-align: center;
   background-color: var(--red);
-  height: 410px;
+  height: 450px;
   padding: 15px;
 
   > * {

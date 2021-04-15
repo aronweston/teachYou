@@ -14,14 +14,14 @@ const MiniCart = ({ visible, close }) => {
   const { cart, removeFromCart } = useContext(ShopContext);
 
   return (
-    <MiniCartContainer visible={visible ? true : null}>
+    <MiniCartContainer data-testid='mini-cart' visible={visible ? true : null}>
       <CloseBar>
         <button onClick={close}>×</button>
       </CloseBar>
       <CartContainer>
         {cart?.length > 0 ? (
           cart?.map((item) => (
-            <CartItem key={item.name}>
+            <CartItem data-testid={`cart-item-${item.id}`} key={item.id}>
               <img src={item.image} alt={item.name} />
               <div>
                 <p>{item.name}</p>

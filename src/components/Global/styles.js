@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Button = styled.button`
   padding: 1rem 3rem;
-  background: white;
+  background-color: white;
   border: 2px #000 solid;
   transition: 0.3s ease;
   cursor: pointer;

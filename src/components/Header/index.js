@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import {
   HeaderWrapper,
   Logo,
@@ -11,18 +11,14 @@ import MiniCart from '../MiniCart';
 import Login from '../Login';
 
 const Header = () => {
-  const { products, user, cart } = useContext(ShopContext);
-
-  const [cartVisible, setCartVisible] = useState(false);
-  const [userVisible, setUserVisible] = useState(false);
-
-  const showCart = () => {
-    !cartVisible ? setCartVisible(true) : setCartVisible(false);
-  };
-
-  const showUser = () => {
-    !userVisible ? setUserVisible(true) : setUserVisible(false);
-  };
+  const {
+    user,
+    cart,
+    showUser,
+    userVisible,
+    showCart,
+    cartVisible,
+  } = useContext(ShopContext);
 
   return (
     <>
@@ -34,7 +30,10 @@ const Header = () => {
 
         <CartContainer>
           <button>
-            <UserIcon loggedIn={user ? true : null} onClick={showUser} />
+            <UserIcon
+              login={user?.name?.length > 1 ? true : undefined}
+              onClick={showUser}
+            />
           </button>
 
           <button>
@@ -43,8 +42,18 @@ const Header = () => {
           <span>{cart?.length}</span>
         </CartContainer>
       </HeaderWrapper>
-      <MiniCart visible={cartVisible} close={() => setCartVisible(false)} />
-      <Login visible={userVisible} close={() => setUserVisible(false)} />
+      <MiniCart
+        visible={cartVisible}
+        close={() => {
+          showCart();
+        }}
+      />
+      <Login
+        visible={userVisible}
+        close={() => {
+          showUser();
+        }}
+      />
     </>
   );
 };

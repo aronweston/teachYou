@@ -4,12 +4,18 @@ import ProductCard from './ProductCard';
 import ShopContext from '../../context/ShopContext';
 
 const ProductGrid = () => {
-  const { products } = useContext(ShopContext);
+  const { products, cart } = useContext(ShopContext);
+
   return (
     <GridContainer>
       {products[0].lessons.map((product) => (
         <ProductCard
-          key={product.name}
+          inCart={
+            cart.length > 0 &&
+            cart.find((cartItem) => cartItem.name === product.name)
+          }
+          id={product.id}
+          key={product.id}
           name={product.name}
           image={product.image}
           author={product.author}

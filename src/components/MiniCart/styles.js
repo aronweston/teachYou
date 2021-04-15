@@ -60,7 +60,7 @@ export const CloseBar = styled.div`
 
 export const CartContainer = styled.div`
   overflow: auto;
-  height: calc(100% - 220px);
+  height: calc(100% - 100px);
 `;
 
 export const RemoveButton = styled(ButtonBase)`
@@ -125,6 +125,7 @@ export const EmptyCart = styled.div`
 
   > p:first-child {
     font-size: 35px;
+    line-height: 35px;
     font-family: var(--font-primary);
     color: black;
     padding: 25px 0px;
@@ -139,7 +140,7 @@ export const EmptyCart = styled.div`
 
   @media (min-width: 768px) {
     > p {
-      width: 40%;
+      width: 80%;
     }
   }
 

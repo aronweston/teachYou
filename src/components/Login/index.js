@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   LoginWrapper,
   LoginContainer,
@@ -33,17 +33,17 @@ const Login = ({ close, visible }) => {
   };
 
   return (
-    <LoginWrapper visible={visible ? true : null}>
+    <LoginWrapper data-testid='login-wrapper' visible={visible ? true : null}>
       <LoginContainer>
         {!loading ? (
           <ContactForm onSubmit={handleSubmit}>
             <p>Login</p>
             <label hidden htmlFor='name'>
-              Name
+              name
             </label>
             <input
+              id='name'
               type='text'
-              name='name'
               value={name}
               onChange={(e) => {
                 setName(e.target.value);
@@ -52,43 +52,47 @@ const Login = ({ close, visible }) => {
             />
 
             <label hidden htmlFor='email'>
-              Email
+              email
             </label>
             <input
+              id='email'
               type='email'
-              name='email'
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
-              placeholder='Email address.'
+              placeholder='Email address'
             />
 
             <label hidden htmlFor='password'>
-              Password
+              password
             </label>
             <input
               type='password'
-              name='password'
+              id='password'
+              name='current-password'
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
               placeholder='Password'
             />
-            <Button secondary>Login</Button>
+            <Button data-testid='login-button' secondary>
+              Login
+            </Button>
           </ContactForm>
         ) : (
           <Success>
             {success ? (
               <>
-                <SuccessIcon />
+                <SuccessIcon data-testid='success' />
                 <span>Success!</span>
                 <p>Hi {user?.name}, you can now buy courses!</p>
                 <Button onClick={close}>Start learning!</Button>
               </>
             ) : (
               <img
+                data-testid='login-loader'
                 src={loader}
                 alt='Loading animation. Please wait while we check your login.'
               />

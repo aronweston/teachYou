@@ -5,8 +5,6 @@ import Font from '../assets/fonts/Recoleta-Black.ttf';
 export const GlobalStyle = createGlobalStyle`
   ${reset}
 
-  @import-normalize;
-
   @font-face {
     font-family: 'Recoleta';
     src: url(${Font}) format('truetype');

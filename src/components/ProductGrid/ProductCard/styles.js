@@ -7,6 +7,11 @@ export const Button = styled(ButtonBase)`
   width: 100%;
   height: 40px;
   padding: 0;
+  background-color: ${(props) => (props.remove === true ? 'red' : '')};
+
+  &:active {
+    background-color: var(--red);
+  }
 
   &:focus {
     outline: none;
@@ -18,10 +23,6 @@ export const Button = styled(ButtonBase)`
   }
 
   @media (min-width: 768px) {
-    &:active {
-      background: var(--red);
-    }
-
     &:hover {
       box-shadow: 0px 5px 37px rgb(0 0 0 / 14%);
     }
@@ -43,10 +44,10 @@ export const CardWrapper = styled.div`
   }
 
   > div {
-    padding: 1rem 0rem;
+    padding: 1rem;
     color: white;
     > * {
-      padding: 0 10px;
+      padding: 6px;
     }
     > p:first-child {
       font-size: 30px;
