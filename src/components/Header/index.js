@@ -4,6 +4,7 @@ import {
   Logo,
   CartIcon,
   UserIcon,
+  LogoutIcon,
   CartContainer,
 } from './styles';
 import ShopContext from '../../context/ShopContext';
@@ -14,6 +15,7 @@ const Header = () => {
   const {
     user,
     cart,
+    logoutUser,
     showUser,
     userVisible,
     showCart,
@@ -29,12 +31,18 @@ const Header = () => {
         </div>
 
         <CartContainer>
-          <button>
-            <UserIcon
-              login={user?.name?.length > 1 ? true : undefined}
-              onClick={showUser}
-            />
-          </button>
+          {Object.keys(user).length > 1 ? (
+            <>
+              <p>{user.name.split(' ')[0]}</p>
+              <button>
+                <LogoutIcon onClick={logoutUser} />
+              </button>
+            </>
+          ) : (
+            <button>
+              <UserIcon onClick={showUser} />
+            </button>
+          )}
 
           <button>
             <CartIcon onClick={showCart} />

@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/fd086242-358e-4c7a-9977-da834e0f3c57/deploy-status)](https://app.netlify.com/sites/thirsty-ramanujan-0073e0/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3fdbbe77-693f-469f-8428-b4b735cc49f2/deploy-status)](https://app.netlify.com/sites/teachyou/deploys) ![ReactBadge](https://badges.aleen42.com/src/react.svg)
 
 # teachYou
 
@@ -35,7 +35,16 @@ The next best thing in online courses. You needs udemy anyway? Our courses will 
 
 ### Approach
 
-My approach for this project was to create the best UI/UX experience as possible, placing a lot of attention on the presentation layer of the application. As such, I have focused on the criteria that make up the most basic functionality layer of a simple eCommerce application: cart functionality, product interaction, and
+My approach for this project was to create the best UI/UX experience possible, placing a lot of attention on the presentation layer of the application. As such, I have focused on the criteria that make up the most basic functionality layer of a simple eCommerce application: cart functionality, product interaction, and a login system.
+
+I chose these features as I felt they were achievable within the time frame, could be done well with a greater focus on UI/UX and provide the building blocks for additional features like search and filtering to be added to an app that does the basics well.
+
+The biggest challenges in this project were managing state using the Context API and testing using the React Testing Library. This project was a great opportunity to explore tools like Context as it was small enough to not get out of hand, but complex enough to gain a workable knowledge of global state management.
+
+While still a shame that time didn't permit moving forward on search and filtering in this project, next steps could possibly be:
+
+1. Store the cart and user objects in localStorage and get from localStorage as default state on load.
+2.
 
 ### Features
 

@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import defaultState from './DefaultState';
 import ShopContext from './ShopContext';
 
 export default function ShopContextProvider({ children }) {
-  const [user, setUser] = useState({});
-  const [cart, setCart] = useState([]);
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem('user')) || {}
+  );
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem('cart')) || []
+  );
   const [userVisible, setUserVisible] = useState(false);
   const [cartVisible, setCartVisible] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('user', JSON.stringify(user));
+  }, [cart, user]);
 
   const showUser = () => {
     !userVisible ? setUserVisible(true) : setUserVisible(false);
@@ -39,6 +48,11 @@ export default function ShopContextProvider({ children }) {
     }
   };
 
+  const logoutUser = () => {
+    setUser({});
+    localStorage.removeItem('user');
+  };
+
   const removeFromCart = (item) => {
     const newCart = cart.filter((product) => product.name !== item);
     setCart(newCart);
@@ -53,6 +67,7 @@ export default function ShopContextProvider({ children }) {
         addToCart,
         removeFromCart,
         loginUser,
+        logoutUser,
         userVisible,
         showUser,
         cartVisible,

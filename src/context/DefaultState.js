@@ -1,4 +1,6 @@
 const defaultState = {
+  cart: JSON.parse(localStorage.getItem('cart')),
+  user: JSON.parse(localStorage.getItem('user')),
   products: [
     {
       lessons: [

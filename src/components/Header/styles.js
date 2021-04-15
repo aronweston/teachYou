@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { ReactComponent as HeaderLogo } from '../../assets/svg/logo.svg';
 import { ReactComponent as CartIconSVG } from '../../assets/svg/cart.svg';
 import { ReactComponent as UserIconSVG } from '../../assets/svg/user.svg';
+import { ReactComponent as LogoutIconSVG } from '../../assets/svg/logout.svg';
 
 const svgStyles = `
 width: 30px;
@@ -17,7 +18,10 @@ export const CartIcon = styled(CartIconSVG)`
   ${svgStyles}
 `;
 export const UserIcon = styled(UserIconSVG)`
-  stroke: ${(props) => (props.loggedIn ? 'var(--text)' : '')};
+  ${svgStyles}
+`;
+
+export const LogoutIcon = styled(LogoutIconSVG)`
   ${svgStyles}
 `;
 
@@ -48,9 +52,16 @@ export const CartContainer = styled.div`
   display: inline-flex;
   pointer: cursor;
   margin-right: 5px;
+  color: white;
 
   > span {
-    color: white;
     font-size: 12px;
+  }
+
+  > p {
+    font-family: var(--font-primary);
+    line-height: 34px;
+    font-size: 20px;
+    margin-right: 3px;
   }
 `;
