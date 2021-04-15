@@ -15,15 +15,15 @@ const Login = ({ close, visible }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    //set loading once submitted
     setLoading(true);
-
     setTimeout(() => {
-      setLoading(false);
+      setSuccess(true);
+      loginUser(name, email, password);
+      setTimeout(() => {
+        setLoading(false);
+        close();
+      }, 2000);
     }, 4000);
-
-    setSuccess(true);
-    loginUser(name, email, password);
   };
 
   return (
@@ -31,42 +31,47 @@ const Login = ({ close, visible }) => {
       <LoginContainer>
         {!loading ? (
           <ContactForm onSubmit={handleSubmit}>
-            <h2>Login</h2>
+            <p>Login</p>
+            <label hidden htmlFor='name'>
+              Name
+            </label>
+            <input
+              type='text'
+              name='name'
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+              placeholder='Name'
+            />
 
-            <label htmlFor='name'>
-              <input
-                type='text'
-                name='name'
-                value={name}
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-                placeholder='Your Name'
-              />
+            <label hidden htmlFor='email'>
+              Email
             </label>
-            <label htmlFor='email'>
-              <input
-                type='email'
-                name='email'
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-                placeholder='Enter your email address. ie. udemysucks@weteach.com.au'
-              />
+            <input
+              type='email'
+              name='email'
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              placeholder='Email address.'
+            />
+
+            <label hidden htmlFor='password'>
+              Password
             </label>
-            <label htmlFor='password'>
-              <input
-                type='password'
-                name='password'
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-                placeholder='Enter your password'
-              />
-            </label>
-            <Button secondary>Send</Button>
+            <input
+              type='password'
+              name='password'
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+              placeholder='Password'
+            />
+
+            <Button secondary>Login</Button>
           </ContactForm>
         ) : (
           <>{success ? <div>hello {user?.name}</div> : <div>Loading...</div>}</>

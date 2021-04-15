@@ -1,10 +1,16 @@
 import styled from 'styled-components';
 import { Button as ButtonBase } from '../Global';
 
-export const Button = styled(ButtonBase)`
-  margin-top: 15px;
-  padding: 0 30px;
-  height: 30px;
+const visible = `
+transform: translateX(0%);
+transition: transform 0.5s;
+opacity: 1;
+`;
+
+const notVisible = `
+opacity: 0;
+transform: translateX(100%);
+transition: transform 0.5s, opacity 5s ease-out;
 `;
 
 export const MiniCartContainer = styled.div`
@@ -22,21 +28,45 @@ export const MiniCartContainer = styled.div`
   }
 `;
 
-const visible = `
-transform: translateX(0%);
-transition: transform 0.5s;
-opacity: 1;
-`;
+export const CloseBar = styled.div`
+  padding: 25px;
+  position: relative;
+  line-height: 1;
+  z-index: 11;
+  font-size: 40px;
+  color: black;
+  cursor: pointer;
+  text-align: left;
 
-const notVisible = `
-opacity: 0;
-transform: translateX(100%);
-transition: transform 0.5s, opacity 5s ease-out;
+  > button {
+    font-family: var(--font-primary);
+    font-size: 30px;
+    color: var(--text);
+    transition: color 0.2s
+
+    &:hover {
+      color: var(--red);
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    padding: 20px;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 15px;
+  }
 `;
 
 export const CartContainer = styled.div`
   overflow: auto;
   height: calc(100% - 220px);
+`;
+
+export const RemoveButton = styled(ButtonBase)`
+  margin-top: 15px;
+  padding: 0 30px;
+  height: 30px;
 `;
 
 export const CartItem = styled.div`
@@ -79,10 +109,8 @@ export const CartItem = styled.div`
   }
 `;
 
-export const CartHeader = styled.div`flex justify-between items-center`;
-
 export const EmptyCart = styled.div`
-  height: 70vh;
+  height: 100%;
   width: 100%;
   margin: 0 auto;
   text-align: center;
@@ -91,15 +119,15 @@ export const EmptyCart = styled.div`
   flex-direction: column;
   align-items: center;
 
-  > * {
-    padding-bottom: 10px;
+  > *:not(button) {
+    padding-bottom: 20px;
   }
 
-  > span {
+  > p:first-child {
     font-size: 35px;
-    font-family: 'Abril Fatface';
+    font-family: var(--font-primary);
     color: black;
-    padding-top: 25px;
+    padding: 25px 0px;
   }
 
   > p {
@@ -119,24 +147,5 @@ export const EmptyCart = styled.div`
     > p {
       width: 60%;
     }
-  }
-`;
-
-export const CloseBar = styled.div`
-  padding: 25px;
-  position: relative;
-  line-height: 1;
-  z-index: 11;
-  font-size: 40px;
-  color: black;
-  cursor: pointer;
-  text-align: left;
-
-  @media screen and (max-width: 1024px) {
-    padding: 20px;
-  }
-
-  @media screen and (max-width: 768px) {
-    padding: 15px;
   }
 `;

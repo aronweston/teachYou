@@ -1,57 +1,51 @@
 import React, { useContext } from 'react';
 import {
-  CartHeader,
   CloseBar,
   MiniCartContainer,
-  Button,
+  RemoveButton,
+  EmptyCart,
   CartContainer,
   CartItem,
 } from './styles';
 import ShopContext from '../../context/ShopContext';
+import { Button } from '../Global';
 
 const MiniCart = ({ visible, close }) => {
-  const { cart } = useContext(ShopContext);
-
-  const handleRemove = (name) => {
-    console.log('removed', name);
-  };
-
-  // const data = [
-  //   {
-  //     name: 'CSS Animations',
-  //     description: 'Learn how to animate anything in CSS',
-  //     author: 'Alan Smith',
-  //     publishDate: '04/12/2018',
-  //     duration: '00:02:11',
-  //     image:
-  //       'https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_960_720.png',
-  //   },
-  // ];
+  const { cart, removeFromCart } = useContext(ShopContext);
 
   return (
     <MiniCartContainer visible={visible ? true : null}>
-      <CartHeader>
-        <div />
-        <CloseBar>
-          <button onClick={close}>×</button>
-        </CloseBar>
-      </CartHeader>
+      <CloseBar>
+        <button onClick={close}>×</button>
+      </CloseBar>
       <CartContainer>
-        {cart?.map((item) => (
-          <CartItem key={item.name}>
-            <img src={item.image} alt={item.name} />
-            <div>
-              <p>{item.name}</p>
-              <p>{item.author}</p>
-              <Button
-                onClick={() => {
-                  handleRemove(item.name);
-                }}>
-                Remove
-              </Button>
-            </div>
-          </CartItem>
-        ))}
+        {cart?.length > 0 ? (
+          cart?.map((item) => (
+            <CartItem key={item.name}>
+              <img src={item.image} alt={item.name} />
+              <div>
+                <p>{item.name}</p>
+                <p>{item.author}</p>
+                <RemoveButton
+                  onClick={() => {
+                    window.confirm(
+                      `Are you sure you want to remove ${item.name}?`
+                    ) && removeFromCart(item.name);
+                  }}>
+                  Remove
+                </RemoveButton>
+              </div>
+            </CartItem>
+          ))
+        ) : (
+          <EmptyCart>
+            <p>Empty Cart</p>
+            <p>
+              Your cart is empty. Browse our amazing courses on the course page!
+            </p>
+            <Button onClick={close}>Shop Now</Button>
+          </EmptyCart>
+        )}
       </CartContainer>
     </MiniCartContainer>
   );

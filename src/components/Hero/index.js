@@ -7,12 +7,19 @@ export const HeroContainer = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   background-color: var(--red);
   height: 350px;
   padding: 15px;
 
   > * {
     margin: 1rem 0rem;
+  }
+
+  @media (min-width: 768px) {
+  }
+
+  @media (min-width: 768px) {
   }
 `;
 

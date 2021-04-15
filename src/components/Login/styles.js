@@ -13,29 +13,22 @@ export const LoginWrapper = styled.section`
 
 export const LoginContainer = styled.div`
   background: var(--background);
-`;
-
-const styles = `
-  border-radius: 3px 3px 3px 3px;
-  width: 100%;
-  padding: 10px;
-  border-width: 2px;
-  border-color: #203631;
-  font-weight: 700;
-  font-style: italic;
-  font-size: 14px;
-  text-align: left;
-  color: var(--text);
-  font-family: var(--font-primary);
-  &:focus {
-    outline: var(--secondary);
-  }
+  padding: 4rem;
+  margin: 2rem;
+  border-radius: 5px;
 `;
 
 export const ContactForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 100%;
+
+  > p {
+    font-family: var(--font-primary);
+    font-size: 35px;
+    margin-bottom: 0px;
+  }
 
   > button {
     width: 50%;
@@ -45,7 +38,19 @@ export const ContactForm = styled.form`
     }
   }
 
-  > label > input {
-    ${styles}
+  > input {
+    border-radius: 3px 3px 3px 3px;
+    padding: 10px;
+    border-width: 2px;
+    border-color: #203631;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 14px;
+    text-align: left;
+    color: var(--text);
+    font-family: var(--font-primary);
+    &:focus {
+      outline: var(--secondary);
+    }
   }
 `;

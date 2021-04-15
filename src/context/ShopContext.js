@@ -49,7 +49,7 @@ const ShopContext = createContext(defaultState);
 export default ShopContext;
 
 export function ShopContextProvider({ children }) {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+  const [user, setUser] = useState({});
   const [cart, setCart] = useState([]);
 
   const loginUser = (name, email, password) => {
@@ -59,20 +59,25 @@ export function ShopContextProvider({ children }) {
       password,
     };
     //create the new user
-    setUser(localStorage.setItem('user', JSON.stringify(userObj)));
+    setUser(userObj);
   };
 
   const addToCart = (productObj) => {
+    //check if the user is logged in
     //check if the product is already in the cart
     //add the product object to the cart array using the spread operator
     //save the cart array to local storage
 
-    const found = cart.find((product) => product.name === productObj.name);
-    if (found) {
-      console.log('product exists');
+    if (user.name) {
+      const found = cart.find((product) => product.name === productObj.name);
+      if (found) {
+        console.log('product exists');
+      } else {
+        const newObj = [...cart, productObj];
+        setCart(newObj);
+      }
     } else {
-      const newObj = [...cart, productObj];
-      setCart(newObj);
+      console.log('not logged in');
     }
   };
 
@@ -81,16 +86,19 @@ export function ShopContextProvider({ children }) {
     //filter the cart items to return everything but that object
     //set the cart object
     //save to LS
+    const newCart = cart.filter((product) => product.name !== item);
+    setCart(newCart);
   };
 
   return (
     <ShopContext.Provider
       value={{
-        cart,
-        addToCart,
-        products: defaultState.products,
-        loginUser,
         user,
+        cart,
+        products: defaultState.products,
+        addToCart,
+        removeFromCart,
+        loginUser,
       }}>
       {children}
     </ShopContext.Provider>

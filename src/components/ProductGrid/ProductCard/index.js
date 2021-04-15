@@ -5,11 +5,6 @@ import ShopContext from '../../../context/ShopContext';
 const ProductCard = ({ name, author, duration, description, image }) => {
   const { addToCart } = useContext(ShopContext);
 
-  // const getTime = (duration) => {
-  //   const date = duration.split(':');
-  //   console.log(date);
-  // };
-
   return (
     <CardWrapper>
       <img src={image} alt={name + description} />

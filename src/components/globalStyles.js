@@ -5,6 +5,8 @@ import Font from '../assets/fonts/Recoleta-Black.ttf';
 export const GlobalStyle = createGlobalStyle`
   ${reset}
 
+  @import-normalize;
+
   @font-face {
     font-family: 'Recoleta';
     src: url(${Font}) format('truetype');
@@ -40,8 +42,22 @@ export const GlobalStyle = createGlobalStyle`
   }
   
   h1 {
-    font-size: 65px;
     color: white;
+    font-size: 50px;
+  }
+
+
+  //media queries
+  
+  @media (min-width: 768px) {
+
+
+  }
+
+  @media (min-width: 1440px) {
+    h1 {
+      font-size: 65px;
+    }
   }
 
 `;
