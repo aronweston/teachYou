@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ReactComponent as SuccessIconSVG } from '../../assets/svg/success.svg';
 
 export const LoginWrapper = styled.section`
   position: fixed;
@@ -10,6 +11,11 @@ export const LoginWrapper = styled.section`
   width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 100;
+
+  > button {
+    color: #eee;
+    font-weight: bold;
+  }
 `;
 
 export const LoginContainer = styled.div`
@@ -17,6 +23,9 @@ export const LoginContainer = styled.div`
   padding: 4rem;
   margin: 2rem;
   border-radius: 5px;
+  height: 300px;
+  width: 300px;
+}
 `;
 
 export const ContactForm = styled.form`
@@ -57,4 +66,19 @@ export const ContactForm = styled.form`
 export const Success = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+
+  > *:not(button) {
+    text-align: center;
+    padding-bottom: 20px;
+  }
+
+  > span {
+    font-size: 30px;
+  }
+`;
+
+export const SuccessIcon = styled(SuccessIconSVG)`
+  stroke: rgba(52, 211, 153, 1);
+  width: 50%;
 `;

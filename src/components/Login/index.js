@@ -1,7 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { LoginWrapper, LoginContainer, ContactForm, Success } from './styles';
+import {
+  LoginWrapper,
+  LoginContainer,
+  ContactForm,
+  Success,
+  SuccessIcon,
+} from './styles';
 import { Button } from '../Global';
 import ShopContext from '../../context/ShopContext';
+import loader from '../../assets/gif/spinner.gif';
 
 const Login = ({ close, visible }) => {
   const { loginUser, user } = useContext(ShopContext);
@@ -10,11 +17,6 @@ const Login = ({ close, visible }) => {
   const [name, setName] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-
-  useEffect(() => {
-    visible = true;
-    setSuccess(true);
-  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,7 +28,7 @@ const Login = ({ close, visible }) => {
       setTimeout(() => {
         setLoading(false);
         close();
-      }, 2000);
+      }, 3500);
     }, 4000);
   };
 
@@ -77,16 +79,24 @@ const Login = ({ close, visible }) => {
             <Button secondary>Login</Button>
           </ContactForm>
         ) : (
-          <>
+          <Success>
             {success ? (
-              <Success>hello {user?.name}</Success>
+              <>
+                <SuccessIcon />
+                <span>Success!</span>
+                <p>Hi {user?.name}, you can now buy courses!</p>
+                <Button onClick={close}>Start learning!</Button>
+              </>
             ) : (
-              <div>Loading...</div>
+              <img
+                src={loader}
+                alt='Loading animation. Please wait while we check your login.'
+              />
             )}
-          </>
+          </Success>
         )}
       </LoginContainer>
-      <button onClick={close}>Exit</button>
+      <button onClick={close}>Close</button>
     </LoginWrapper>
   );
 };
