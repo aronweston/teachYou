@@ -5,9 +5,9 @@
 The next best thing in online courses. You needs udemy anyway? Our courses will bring you from zero code to a bona-fide Bertram Gilfoyle!
 
 <div style="display: inline-flex; width: 100%; gap: 20px;">
-<img src="https://icons-for-free.com/iconfiles/png/512/design+development+facebook+framework+mobile+react+icon-1320165723839064798.png" width="40px" alt='react tag'>
-<img src="https://raw.githubusercontent.com/styled-components/brand/master/styled-components.png" width="40px" alt='react tag'>
-<a href="https://weteachyou.aronweston.com"><img src="src/assets/images/link.jpg" width="35px"></a>
+    <img src="https://icons-for-free.com/iconfiles/png/512/design+development+facebook+framework+mobile+react+icon-1320165723839064798.png" width="40px" alt='react tag'>
+    <img src="https://raw.githubusercontent.com/styled-components/brand/master/styled-components.png" width="40px" alt='react tag'>
+    <a href="https://weteachyou.aronweston.com"><img src="src/assets/images/link.jpg" width="35px"></a>
 </div>
 
 ![Visual overview of the site](src/assets/images/overview.png)

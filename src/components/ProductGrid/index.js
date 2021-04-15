@@ -5,7 +5,6 @@ import ShopContext from '../../context/ShopContext';
 
 const ProductGrid = () => {
   const { products, cart } = useContext(ShopContext);
-
   return (
     <GridContainer>
       {products[0].lessons.map((product) => (
