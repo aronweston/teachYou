@@ -2,11 +2,11 @@
 
 # teachYou
 
-![React logo](https://icons-for-free.com/iconfiles/png/512/design+development+facebook+framework+mobile+react+icon-1320165723839064798.png)![Styled components logo](https://raw.githubusercontent.com/styled-components/brand/master/styled-components.png)
-
-[Hosted Project Link](https://weteachyou.aronweston.com)
-
 The next best thing in online courses. You needs udemy anyway? Our courses will bring you from zero code to a bona-fide Bertram Gilfoyle!
+
+<img src="https://icons-for-free.com/iconfiles/png/512/design+development+facebook+framework+mobile+react+icon-1320165723839064798.png" width="35px" alt='react tag'>
+<img src="https://raw.githubusercontent.com/styled-components/brand/master/styled-components.png" width="35px" alt='react tag'>
+<a href="https://weteachyou.aronweston.com"><img src="src/assets/images/link.jpg" width="35px"></a>
 
 ![Visual overview of the site](src/assets/images/overview.png)
 
@@ -26,6 +26,7 @@ The next best thing in online courses. You needs udemy anyway? Our courses will 
 ## Features
 
 - Context API for state management including the cart and user state, as well as their respective helper functions to be available throughout the projects global scope.
+- Local storage to prevent annoying reloading. Stored the cart and user objects in localStorage and get from localStorage as default state on load.
 - Header, Hero and Product Grid responsive down to small mobile screens.
 - Mini cart with empty cart message component
 - Login modal with loading and success message
@@ -41,22 +42,25 @@ I chose these features as I felt they were achievable within the time frame, cou
 
 The biggest challenges in this project were managing state using the Context API and testing using the React Testing Library. This project was a great opportunity to explore tools like Context as it was small enough to not get out of hand, but complex enough to gain a workable knowledge of global state management.
 
-While still a shame that time didn't permit moving forward on search and filtering in this project, next steps could possibly be:
-
-1. Store the cart and user objects in localStorage and get from localStorage as default state on load.
-2.
-
 ### Features
 
 #### Mini Cart
 
+Empty Cart
+
 ![Visual overview of the site](src/assets/images/desktop-cart.png)
+
+Full Cart
+
+![Visual overview of the site](src/assets/images/full-cart.png)
 
 #### Login Modal
 
+Login
+
 ![Visual overview of the site](src/assets/images/login.png)
 
-#### Login Success
+Success
 
 ![Visual overview of the site](src/assets/images/login-success.png)
 
