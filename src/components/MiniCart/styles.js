@@ -1,4 +1,11 @@
 import styled from 'styled-components';
+import { Button as ButtonBase } from '../Global';
+
+export const Button = styled(ButtonBase)`
+  margin-top: 15px;
+  padding: 0 30px;
+  height: 30px;
+`;
 
 export const MiniCartContainer = styled.div`
   position: fixed;
@@ -35,7 +42,7 @@ export const CartContainer = styled.div`
 export const CartItem = styled.div`
   padding: 15px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 150px 1fr 1fr;
   grid-gap: 10px;
   text-align: left;
 
@@ -60,55 +67,16 @@ export const CartItem = styled.div`
   > div {
     > p:first-child {
       font-size: 20px;
-      font-family: 'Abril Fatface';
+      font-family: var(--font-primary);
       font-weight: bold;
     }
 
     > p:last-child {
       font-size: 17px;
       margin: 10px 0;
-      font-family: 'Abril Fatface';
       font-weight: bold;
     }
   }
-`;
-
-export const ButtonBlock = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 1rem 15px;
-  position: absolute;
-  bottom: 0;
-
-  > div {
-    display: inline-flex;
-    justify-content: space-between;
-    font-size: 18px;
-  }
-
-  // Tablet
-  @media screen and (min-width: 768px) {
-    width: 85%;
-    margin: 0 auto;
-    left: 50%;
-    transform: translate(-50%);
-  }
-  //Desktop
-  @media screen and (min-width: 1024px) {
-    width: 100%;
-  }
-`;
-
-const buttonStyles = `
-margin: 0;
-  margin-top: 5px;
-  margin-right: 0;
-  padding: 0.8rem 2rem;
-  &:hover {
-    transform: none;
-  }
-
 `;
 
 export const CartHeader = styled.div`flex justify-between items-center`;

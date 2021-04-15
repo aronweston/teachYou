@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 
 const defaultState = {
   products: [
@@ -49,24 +49,45 @@ const ShopContext = createContext(defaultState);
 export default ShopContext;
 
 export function ShopContextProvider({ children }) {
-  const [user, setUser] = useState(
-    JSON.parse(
-      typeof window !== 'undefined' ? localStorage.getItem('user') : null
-    )
-  );
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+  const [cart, setCart] = useState([]);
 
-  const loginUser = (email, password) => {
-    const obj = {
+  const loginUser = (name, email, password) => {
+    const userObj = {
+      name,
       email,
       password,
     };
+    //create the new user
+    setUser(localStorage.setItem('user', JSON.stringify(userObj)));
+  };
 
-    localStorage.setItem('user', JSON.stringify(obj));
+  const addToCart = (productObj) => {
+    //check if the product is already in the cart
+    //add the product object to the cart array using the spread operator
+    //save the cart array to local storage
+
+    const found = cart.find((product) => product.name === productObj.name);
+    if (found) {
+      console.log('product exists');
+    } else {
+      const newObj = [...cart, productObj];
+      setCart(newObj);
+    }
+  };
+
+  const removeFromCart = (item) => {
+    //find the object that matches the name of the item removed
+    //filter the cart items to return everything but that object
+    //set the cart object
+    //save to LS
   };
 
   return (
     <ShopContext.Provider
       value={{
+        cart,
+        addToCart,
         products: defaultState.products,
         loginUser,
         user,

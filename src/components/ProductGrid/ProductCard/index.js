@@ -1,32 +1,30 @@
-import React, { useState } from 'react';
-import { CardWrapper, Qty } from './styles';
+import React, { useState, useContext } from 'react';
+import { CardWrapper, Button } from './styles';
+import ShopContext from '../../../context/ShopContext';
 
 const ProductCard = ({ name, author, duration, description, image }) => {
-  const [quantity, setQuantity] = useState(0);
+  const { addToCart } = useContext(ShopContext);
+
+  // const getTime = (duration) => {
+  //   const date = duration.split(':');
+  //   console.log(date);
+  // };
 
   return (
-    <CardWrapper background={image}>
-      <div></div>
+    <CardWrapper>
+      <img src={image} alt={name + description} />
       <div>
         <p>{name}</p>
         <p>{author}</p>
-        <p>{duration}</p>
+        <p>Duration: {duration}</p>
         <p>{description}</p>
       </div>
-      <Qty
-        // disabled={!available}
-        type='number'
-        min='1'
-        step='1'
-        value={quantity}
-        // onChange={qtyChange}
-      />
-      <button
+      <Button
         onClick={() => {
-          console.log('addded to cart');
+          addToCart({ image, author, name });
         }}>
         Add to cart
-      </button>
+      </Button>
     </CardWrapper>
   );
 };

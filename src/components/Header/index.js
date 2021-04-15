@@ -5,7 +5,7 @@ import MiniCart from '../MiniCart';
 import Login from '../Login';
 
 const Header = () => {
-  const { products } = useContext(ShopContext);
+  const { products, user } = useContext(ShopContext);
 
   const [cartVisible, setCartVisible] = useState(false);
   const [userVisible, setUserVisible] = useState(false);
@@ -27,6 +27,7 @@ const Header = () => {
         </span>
         <div>
           <button>
+            <span>{user?.name}</span>
             <UserIcon onClick={showUser} />
           </button>
           <button>

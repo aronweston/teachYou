@@ -4,9 +4,11 @@ import { Button } from '../Global';
 import ShopContext from '../../context/ShopContext';
 
 const Login = ({ close, visible }) => {
-  const { loginUser } = useContext(ShopContext);
+  const { loginUser, user } = useContext(ShopContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
@@ -21,7 +23,7 @@ const Login = ({ close, visible }) => {
     }, 4000);
 
     setSuccess(true);
-    loginUser(email, password);
+    loginUser(name, email, password);
   };
 
   return (
@@ -31,9 +33,21 @@ const Login = ({ close, visible }) => {
           <ContactForm onSubmit={handleSubmit}>
             <h2>Login</h2>
 
+            <label htmlFor='name'>
+              <input
+                type='text'
+                name='name'
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+                placeholder='Your Name'
+              />
+            </label>
             <label htmlFor='email'>
               <input
                 type='email'
+                name='email'
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
@@ -41,20 +55,21 @@ const Login = ({ close, visible }) => {
                 placeholder='Enter your email address. ie. udemysucks@weteach.com.au'
               />
             </label>
-            <label htmlFor='email'>
+            <label htmlFor='password'>
               <input
                 type='password'
+                name='password'
                 value={password}
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
-                placeholder='Enter your password. eg. Skillshare is subpar.'
+                placeholder='Enter your password'
               />
             </label>
             <Button secondary>Send</Button>
           </ContactForm>
         ) : (
-          <>{success ? <div>success</div> : <div>Loading...</div>}</>
+          <>{success ? <div>hello {user?.name}</div> : <div>Loading...</div>}</>
         )}
       </LoginContainer>
       <button onClick={close}>Exit</button>

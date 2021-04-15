@@ -7,8 +7,8 @@ import { ShopContextProvider } from './context/ShopContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalStyle />
     <ShopContextProvider>
+      <GlobalStyle />
       <Header />
       <Home />
     </ShopContextProvider>
