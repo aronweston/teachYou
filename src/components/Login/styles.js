@@ -5,6 +5,7 @@ export const LoginWrapper = styled.section`
   display: ${(props) => (props.visible ? 'flex' : 'none')};
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
@@ -31,8 +32,6 @@ export const ContactForm = styled.form`
   }
 
   > button {
-    width: 50%;
-
     @media (max-width: 768px) {
       width: 100%;
     }
@@ -53,4 +52,9 @@ export const ContactForm = styled.form`
       outline: var(--secondary);
     }
   }
+`;
+
+export const Success = styled.div`
+  display: flex;
+  flex-direction: column;
 `;

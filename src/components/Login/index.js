@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { LoginWrapper, LoginContainer, ContactForm } from './styles';
+import React, { useState, useEffect, useContext } from 'react';
+import { LoginWrapper, LoginContainer, ContactForm, Success } from './styles';
 import { Button } from '../Global';
 import ShopContext from '../../context/ShopContext';
 
@@ -8,9 +8,13 @@ const Login = ({ close, visible }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    visible = true;
+    setSuccess(true);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -70,11 +74,16 @@ const Login = ({ close, visible }) => {
               }}
               placeholder='Password'
             />
-
             <Button secondary>Login</Button>
           </ContactForm>
         ) : (
-          <>{success ? <div>hello {user?.name}</div> : <div>Loading...</div>}</>
+          <>
+            {success ? (
+              <Success>hello {user?.name}</Success>
+            ) : (
+              <div>Loading...</div>
+            )}
+          </>
         )}
       </LoginContainer>
       <button onClick={close}>Exit</button>
