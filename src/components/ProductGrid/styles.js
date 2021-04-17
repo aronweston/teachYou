@@ -16,3 +16,14 @@ export const GridContainer = styled.section`
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 `;
+
+export const ResultsTitle = styled.p`
+  font-family: var(--font-primary);
+  font-size: 1.8rem;
+  padding: 1rem 0;
+`;
+
+export const NoResults = styled.div`
+  padding: 1rem;
+  display: flex;
+`;

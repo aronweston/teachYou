@@ -1,39 +1,49 @@
 import React, { useState, useEffect, useContext } from 'react';
 import ShopContext from '../../context/ShopContext';
-import { SearchInput } from './styles';
+import { SearchInput, SearchContainer } from './styles';
 
 const Search = () => {
+  // const [byDate, setByDate] = useState('');
+  // const [byDuration, setByDuration] = useState('');
   const [query, setQuery] = useState('');
-  const { products } = useContext(ShopContext);
-  const [results, setResults] = useState([]);
+  const { products, results, searchProducts } = useContext(ShopContext);
+
+  const [filtered, setFiltered] = useState([]);
 
   useEffect(() => {
-    setResults(
-      products.filter((lesson) => {
-        const lessonArr = lesson.name
-          .split(' ')
-          .join(',')
-          .replace(/[,-]/g, '')
-
-          .toLowerCase();
-
-        const queryArr = query
-          .split(' ')
-          .join(',')
-          .replace(/[,-]/g, '')
-          .toLowerCase();
-
-        console.log(lessonArr, queryArr);
-        return lessonArr.includes(queryArr);
-      })
-    );
-
-    //     // return lesson.name.toLowerCase().includes(query.toLowerCase());
-    //   })
+    searchProducts(products, query);
   }, [query, products]);
 
+  //React
+  //JS
+  //Vue
+  //CSS
+
+  const filterDate = (byDate) => {
+    const x = products.filter((product) => {
+      const today = new Date();
+      const date = product.publishDate.split('/');
+      const creationDate = new Date(date[2], date[1] - 1, date[0]);
+
+      console.log(today, creationDate);
+      return creationDate >= today;
+    });
+
+    console.log(x);
+  };
+
+  // const filterDuration = (byDuration) => {
+  //   if (byDuration === 'recent') {
+  //     products.map(({ publishDate }) => {
+  //       console.log(publishDate, Date.parse(publishDate));
+  //     });
+  //   } else {
+  //     console.log('f');
+  //   }
+  // };
+
   return (
-    <div>
+    <SearchContainer>
       <SearchInput
         type='text'
         placeholder='Search for a course'
@@ -43,10 +53,40 @@ const Search = () => {
         }}
       />
 
-      {results.map((lesson) => (
-        <p key={lesson.id}>{lesson.name}</p>
+      <div
+        onChange={(e) => {
+          console.log(e.target.value);
+          filterDate(e.target.value);
+        }}>
+        Sort courses by date
+        <input
+          selected
+          type='radio'
+          id='oldest'
+          value='oldest'
+          name='duration'
+        />
+        <input type='radio' id='newest' value='newest' name='duration' />
+      </div>
+
+      {/* <div
+        onChange={(e) => {
+          console.log(e.target.value);
+          filterDuration(e.target.value);
+        }}>
+        Sort courses by duration
+        <input type='radio' id='shortest' value='shortest' name='duration' />
+        <input type='radio' id='longest' value='longest' name='duration' />
+      </div> */}
+
+      <br></br>
+      {filtered.map((p) => (
+        <div>
+          <p>{p.name}</p>
+          <p>{p.duration}</p>
+        </div>
       ))}
-    </div>
+    </SearchContainer>
   );
 };
 

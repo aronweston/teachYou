@@ -8,3 +8,8 @@ export const SearchInput = styled.input`
   border-radius: 5px;
   font-family: var(--font-primary);
 `;
+
+export const SearchContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;

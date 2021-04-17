@@ -11,11 +11,24 @@ export default function ShopContextProvider({ children }) {
   );
   const [userVisible, setUserVisible] = useState(false);
   const [cartVisible, setCartVisible] = useState(false);
+  const [results, setResults] = useState([]);
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
     localStorage.setItem('user', JSON.stringify(user));
   }, [cart, user]);
+
+  const searchProducts = (products, query) => {
+    setQuery(query);
+    setResults(
+      products.filter((lesson) => {
+        const search = query.replace(/[,-]/g, '').toLowerCase();
+        const keywords = lesson.name.replace(/[,-]/g, '').toLowerCase();
+        return keywords.includes(search);
+      })
+    );
+  };
 
   const showUser = () => {
     !userVisible ? setUserVisible(true) : setUserVisible(false);
@@ -72,6 +85,9 @@ export default function ShopContextProvider({ children }) {
         showUser,
         cartVisible,
         showCart,
+        searchProducts,
+        results,
+        query,
       }}>
       {children}
     </ShopContext.Provider>

@@ -1,15 +1,30 @@
-import React, { useContext } from 'react';
-import { GridContainer } from './styles';
+import React, { useEffect, useContext } from 'react';
+import { GridContainer, ResultsTitle, NoResults } from './styles';
 import ProductCard from './ProductCard';
 import ShopContext from '../../context/ShopContext';
 
 const ProductGrid = () => {
-  const { products, cart } = useContext(ShopContext);
+  const { results, query, cart } = useContext(ShopContext);
+  const ql = query.length;
+  const rl = results.length;
   return (
     <>
-      <p>Search results for "Vue"</p>
+      {rl > 0 && ql > 0 ? (
+        <ResultsTitle>
+          {rl} {rl > 1 ? 'results' : 'result'} found for <span>"{query}"</span>
+        </ResultsTitle>
+      ) : (
+        ''
+      )}
+
+      {results.length === 0 && (
+        <NoResults>
+          No results found for <span>"{query}"</span>
+        </NoResults>
+      )}
+
       <GridContainer>
-        {products.map((product) => (
+        {results.map((product) => (
           <ProductCard
             inCart={
               cart.length > 0 &&
