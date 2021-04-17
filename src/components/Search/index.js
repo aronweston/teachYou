@@ -9,38 +9,35 @@ const Search = () => {
   const { products, results, searchProducts } = useContext(ShopContext);
 
   const [filtered, setFiltered] = useState([]);
+  const [date, setDate] = useState('');
 
   useEffect(() => {
     searchProducts(products, query);
-  }, [query, products]);
+    console.log(date);
+    filterDate(date);
+  }, [date, query, products]);
 
   //React
   //JS
   //Vue
   //CSS
 
-  const filterDate = (byDate) => {
-    const x = products.filter((product) => {
-      const today = new Date();
-      const date = product.publishDate.split('/');
-      const creationDate = new Date(date[2], date[1] - 1, date[0]);
-
-      console.log(today, creationDate);
-      return creationDate >= today;
+  const filterDate = (value) => {
+    const sorted = products.sort((a, b) => {
+      const dA = a.publishDate.split('/');
+      const dB = b.publishDate.split('/');
+      const dateA = new Date(dA[2], dA[1] - 1, dA[0]).valueOf();
+      const dateB = new Date(dB[2], dB[1] - 1, dB[0]).valueOf();
+      if (value === 'newest') {
+        return dateB - dateA;
+      } else if (value === 'oldest') {
+        return dateA - dateB;
+      } else {
+        return [];
+      }
     });
-
-    console.log(x);
+    setFiltered(sorted);
   };
-
-  // const filterDuration = (byDuration) => {
-  //   if (byDuration === 'recent') {
-  //     products.map(({ publishDate }) => {
-  //       console.log(publishDate, Date.parse(publishDate));
-  //     });
-  //   } else {
-  //     console.log('f');
-  //   }
-  // };
 
   return (
     <SearchContainer>
@@ -55,8 +52,7 @@ const Search = () => {
 
       <div
         onChange={(e) => {
-          console.log(e.target.value);
-          filterDate(e.target.value);
+          setDate(e.target.value);
         }}>
         Sort courses by date
         <input
@@ -68,16 +64,6 @@ const Search = () => {
         />
         <input type='radio' id='newest' value='newest' name='duration' />
       </div>
-
-      {/* <div
-        onChange={(e) => {
-          console.log(e.target.value);
-          filterDuration(e.target.value);
-        }}>
-        Sort courses by duration
-        <input type='radio' id='shortest' value='shortest' name='duration' />
-        <input type='radio' id='longest' value='longest' name='duration' />
-      </div> */}
 
       <br></br>
       {filtered.map((p) => (
