@@ -1,6 +1,6 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/3fdbbe77-693f-469f-8428-b4b735cc49f2/deploy-status)](https://app.netlify.com/sites/teachyou/deploys) ![ReactBadge](https://badges.aleen42.com/src/react.svg)
 
-# teachYou
+# teachYou - Development
 
 The next best thing in online courses. You needs udemy anyway? Our courses will bring you from zero code to a bona-fide Bertram Gilfoyle!
 
