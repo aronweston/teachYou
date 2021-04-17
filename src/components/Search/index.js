@@ -1,9 +1,15 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ShopContext from '../../context/ShopContext';
 import { SearchInput } from './styles';
 
 const Search = () => {
   const [query, setQuery] = useState('');
+  const [results, setResults] = useState([]);
+  const { products } = useContext(ShopContext);
+
+  useEffect(() => {
+    setResults(products[0].lessons.filter((lesson) => lesson.name === query));
+  }, [query]);
 
   return (
     <div>
@@ -15,7 +21,10 @@ const Search = () => {
           setQuery(e.target.value);
         }}
       />
-      <p>{query}</p>
+
+      {results?.map((lesson) => (
+        <p>{lesson.name}</p>
+      ))}
     </div>
   );
 };
