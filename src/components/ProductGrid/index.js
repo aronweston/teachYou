@@ -9,7 +9,7 @@ const ProductGrid = () => {
     <>
       <p>Search results for "Vue"</p>
       <GridContainer>
-        {products[0].lessons.map((product) => (
+        {products.map((product) => (
           <ProductCard
             inCart={
               cart.length > 0 &&

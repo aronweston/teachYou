@@ -63,7 +63,7 @@ export default function ShopContextProvider({ children }) {
       value={{
         user,
         cart,
-        products: defaultState.products,
+        products: defaultState.products[0].lessons,
         addToCart,
         removeFromCart,
         loginUser,
