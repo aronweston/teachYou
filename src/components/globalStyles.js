@@ -34,6 +34,11 @@ export const GlobalStyle = createGlobalStyle`
   }
 
 
+  input[type=radio] {
+    box-sizing: border-box;
+    padding: 0;
+  }
+
   h1, h2, h3, span {
     font-family: var(--font-primary);
     font-weight: 900;
@@ -43,6 +48,7 @@ export const GlobalStyle = createGlobalStyle`
     color: white;
     font-size: 50px;
   }
+
 
 
   //media queries

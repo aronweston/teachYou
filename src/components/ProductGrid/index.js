@@ -5,6 +5,8 @@ import ShopContext from '../../context/ShopContext';
 
 const ProductGrid = () => {
   const { results, query, cart } = useContext(ShopContext);
+  useEffect(() => {}, [results]);
+
   const ql = query.length;
   const rl = results.length;
   return (
@@ -16,13 +18,11 @@ const ProductGrid = () => {
       ) : (
         ''
       )}
-
       {results.length === 0 && (
         <NoResults>
           No results found for <span>"{query}"</span>
         </NoResults>
       )}
-
       <GridContainer>
         {results.map((product) => (
           <ProductCard
@@ -30,6 +30,7 @@ const ProductGrid = () => {
               cart.length > 0 &&
               cart.find((cartItem) => cartItem.name === product.name)
             }
+            publishDate={product.publishDate}
             id={product.id}
             key={product.id}
             name={product.name}
