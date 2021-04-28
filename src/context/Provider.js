@@ -17,13 +17,8 @@ export default function ShopContextProvider({ children }) {
     localStorage.setItem('user', JSON.stringify(user));
   }, [cart, user]);
 
-  const showUser = () => {
-    !userVisible ? setUserVisible(true) : setUserVisible(false);
-  };
-
-  const showCart = () => {
-    !cartVisible ? setCartVisible(true) : setCartVisible(false);
-  };
+  const showUser = () => setUserVisible(!userVisible);
+  const showCart = () => setCartVisible(!cartVisible);
 
   const loginUser = (name, email, password) => {
     setUser({
